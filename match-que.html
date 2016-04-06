@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery </title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .draggable { width: 200px; height: 30px; padding: 0.5em; float: left; margin: 3px 3px 3px 0; }
+  .droppable { width: 300px; height: 50px; padding: 0.5em; float: left; margin: 10px; }
+  </style>
+  <script>
+  $(function() {
+    $( ".draggable" ).draggable();
+    $( ".droppable" ).droppable({
+      drop: function( event, ui ) {
+		$(".droppable").each(function() {
+			
+			if($(this).find("p").attr("data-opt") == ui.draggable.find("p").attr("data-opt-value"))
+			{
+				$(this).find("p").attr("data-opt",'');
+			}
+		});
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .attr('data-opt',ui.draggable.find("p").attr("data-opt-value"));
+      }
+    });
+  });
+  $(document).ready(function(){
+		$("#check").click(function(){
+			$(".droppable").each(function() {
+				if($(this).find("p").attr("data-opt")==$(this).find("p").attr("data-match"))
+				{
+					alert("right");
+				}
+				else
+				{
+					alert("wrong");
+				}
+			});
+		});
+  })
+  
+  </script>
+</head>
+<body>
+
+<div class="ui-widget-content draggable">
+  <p data-opt-value="1">Option 1</p>
+</div>
+<div class="ui-widget-content draggable">
+  <p data-opt-value="2">Option 2</p>
+</div>
+<div class="ui-widget-content draggable">
+  <p data-opt-value="3">Option 3</p>
+</div>
+<div class="ui-widget-header droppable">
+  <p data-opt="" data-match="1">Match 1</p>
+</div>
+<div class="ui-widget-header droppable">
+  <p data-opt="" data-match="2">Match 2</p>
+</div>
+<div class="ui-widget-header droppable">
+  <p data-opt="" data-match="3">Match 3</p>
+</div>
+<button id="check"><p>Check</p></button>
+<button id="check"><a href="match-que.html">Reset</a></button>
+</body>
+</html>
