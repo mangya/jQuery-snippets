@@ -9,11 +9,10 @@ $username = 'root';
 /*** mysql password ***/
 $password = '';
 
-try {
-		$dbh = new PDO("mysql:host=$hostname;dbname=mrg", $username, $password);
-		
+	try {
+		$dbh = new PDO("mysql:host=$hostname;dbname=db_itm_elearning_materials", $username, $password);
     }
-catch(PDOException $e)
+	catch(PDOException $e)
     {
-    echo $e->getMessage();
+		echo $e->getMessage();
     }
